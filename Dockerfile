@@ -20,14 +20,14 @@ COPY    start.sh /
 
 #       create /home/ngrok/.ngrok2/ngrok.yml for default config location 
 #       generate ngrok.yml in start.sh
-#		    printf 'web_addr: 0.0.0.0:4040\n' > /home/ngrok/.ngrok2/ngrok.yml && \
-#		    addgroup -g 4040 -S ngrok && \
+#	printf 'web_addr: 0.0.0.0:4040\n' > /home/ngrok/.ngrok2/ngrok.yml && \
+#	addgroup -g 4040 -S ngrok && \
 #       adduser -u 4040 -S ngrok -G ngrok -h /home/ngrok -s /bin/ash && \
 
 RUN     mkdir -p /home/ngrok /home/ngrok/.ngrok2 && \
-		    addgroup -S ngrok && \
+	addgroup -S ngrok && \
         adduser -S ngrok -G ngrok -h /home/ngrok -s /bin/ash && \
-    	  chown -R ngrok:ngrok /home/ngrok && \
+    	chown -R ngrok:ngrok /home/ngrok && \
         chmod +x /start.sh
 
 USER    ngrok:ngrok
