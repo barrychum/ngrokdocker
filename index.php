@@ -296,15 +296,16 @@
         $ip = trim($myArray[$i]);
 
         if (ip_is_private($ip)) {
-            echo $myString . ', private IP<br>';
+            echo '<tt>'. $myString . '</tt>, private IP<br>';
         } else {
             $details = ipinfo($ip);  
-            echo $details->ip . ', ';
+            echo '<tt>'.$details->ip . '</tt>, ';
             echo $details->city . ', ';
             echo $details->region . ', ';
             echo $details->country . ' ';
-            echo getFlags($details->country);
-            echo '<br>';
+            // echo '<font size="+1">'.getFlags($details->country).'</font>';
+            // echo '<br>';
+            echo '<img src="png250px/'.strtolower($details->country).'.png" height="20"><br>';
             echo $details->timezone;
             echo '<br>';
             echo $details->org;
@@ -322,7 +323,10 @@
     }
 } ?>
 
+<h3>Source(s) of incoming request :</h3>
+
 <?php
+    echo $_SERVER['HTTP_USER_AGENT'] . "<br><br>";
     $ip_address = '';
     echo 'Incoming request details :<br><br>';
     check_http_tag ('HTTP_X_CLUSTER_CLIENT_IP');
